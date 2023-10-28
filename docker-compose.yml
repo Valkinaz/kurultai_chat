@@ -1,0 +1,9 @@
+version: "3.7"
+services:
+    go:
+        container_name: kurultai_chat_go
+        build: ./
+        ports:
+          - 50001:50001
+        volumes:
+          - ./:/app

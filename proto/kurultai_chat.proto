@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option go_package = "github.com/Valkinaz/kurultai_chat";
+
+package kurultai_chat;
+
+service KurultaiChat {
+  rpc SendMessage(Message) returns (Message) {}
+}
+
+message Message {
+  string content = 1;
+}
