@@ -1,13 +1,21 @@
 .ONESHELL:
 SHELL = /bin/bash
 
+.PHONY: build
+build:
+	docker build .
+
 .PHONY: up
 up:
-	docker compose up --build --remove-orphans -d
+	docker compose up
 
 .PHONY: down
 down:
 	docker compose down
+
+.PHONY: cli
+cli:
+	docker exec -it kurultai_chat_go bash
 
 .PHONY: proto
 proto:

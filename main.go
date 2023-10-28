@@ -2,20 +2,27 @@ package main
 
 import (
 	"fmt"
+	"github.com/Valkinaz/kurultai_chat/config"
 	pb "github.com/Valkinaz/kurultai_chat/proto"
 	"github.com/Valkinaz/kurultai_chat/server"
+	"github.com/joho/godotenv"
 	"google.golang.org/grpc"
 	"log"
 	"net"
 )
 
-var (
-	network = "tcp"
-	address = fmt.Sprintf(":%d", 50001)
-)
+func init() {
+	_ = godotenv.Load(".env.local")
+}
 
 func main() {
-	listener, err := net.Listen(network, address)
+	appConfig, err := config.New()
+	if err != nil {
+		log.Fatalf("Не удалось загрузить конфигурацию: %v", err)
+	}
+
+	address := fmt.Sprintf(":%s", appConfig.Port)
+	listener, err := net.Listen("tcp", address)
 	if err != nil {
 		log.Fatalf("Не удалось начать слушать порт: %v", err)
 	}
