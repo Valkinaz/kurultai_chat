@@ -1,3 +1,6 @@
-main
 .idea
+
 .env.local
+
+tmp
+!tmp/.gitkeep
