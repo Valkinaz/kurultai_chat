@@ -50,7 +50,7 @@ runner = "green"
 
 [misc]
 # Delete tmp directory on exit
-clean_on_exit = true
+clean_on_exit = false
 
 [screen]
 clear_on_rebuild = true

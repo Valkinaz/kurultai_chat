@@ -1,4 +1,9 @@
 version: "3.7"
+
+networks:
+    kurultai_chat_network:
+        name: kurultai_chat_network
+
 services:
     go:
         container_name: kurultai_chat_go
@@ -7,3 +12,12 @@ services:
           - 50001:50001
         volumes:
           - ./:/app
+    db:
+        container_name: kurultai_chat_pg
+        image: postgres:14
+        ports:
+            - 5432:5432
+        env_file:
+            - ./.env.local
+        networks:
+            kurultai_chat_network:
